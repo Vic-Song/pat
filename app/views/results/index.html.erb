@@ -49,15 +49,21 @@
       <tr>
         <td><%= q.title %></td>
         <td>
-        <% opids = Result.where(question_id:q.id,paper_id:@paper.id,user_id:current_user.id)[0].content.tr('[]\" ','').split(',') %>
-        <% if opids[-2].to_s.include?('o') %>
-          <% for op in opids[0..-3] %>
-            <%= ObjOption.find(op).title %> 
-          <% end %>
-            其他：<%= opids[-1] %>  
-        <% else %>
+          <% opids = Result.where(question_id:q.id,paper_id:@paper.id,user_id:current_user.id)[0].content.tr('[]\" ','').split(',') %>
+          <% if q.style == 0 || q.style == 1 %>
+            <% if opids[-2].to_s.include?('o') %>
+              <% for op in opids[0..-3] %>
+                <%= ObjOption.find(op).title %> 
+              <% end %>
+                其他：<%= opids[-1] %>  
+            <% else %>
+              <% for op in opids %>
+                <%= ObjOption.find(op).title %> 
+              <% end %>
+            <% end %>
+        <% elsif q.style == 2 %>
           <% for op in opids %>
-            <%= ObjOption.find(op).title %> 
+            <%= op%>
           <% end %>
         <% end %>
         </td>
@@ -85,7 +91,6 @@
             <% end %>
           <% end %>
           其他：<%= j %>
-
         </td>
       </tr>
       <% end %>

@@ -122,7 +122,7 @@
             <input type="text" class="form-control" name="content[]" id="o<%= o.id%>"  placeholder="<%= o.title%>" >
         <% end %>
     <% elsif @question.style==2 %>
-      <% @question.obj_options.each do |a|%>
+      <% @question.sub_options.each do |a|%>
       <textarea  class="form-control" name="content[]" rows="3" placeholder="<%= a.title%>"></textarea>
       <% end %>
     <% end %>

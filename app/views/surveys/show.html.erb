@@ -45,7 +45,7 @@
 					<input type="text" class="form-control" name="checkbox"  id="o<%= o.id%>"  placeholder="<%= o.title%>" >
 		            	<% end %>	
 		<% elsif q.style==2%>
-			<% q.obj_options.each do |a|%>
+			<% q.sub_options.each do |a|%>
 			<textarea class="form-control" rows="3" placeholder="<%= a.title%>" style=" "></textarea>
 			<% end %>
 		<% end %>
