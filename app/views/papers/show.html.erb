@@ -1,0 +1,165 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @paper.title %>
+</p>
+
+<p>
+  <strong>Authorname1:</strong>
+  <%= @paper.authorName1 %>
+</p>
+
+<p>
+  <strong>Authorname2:</strong>
+  <%= @paper.authorName2 %>
+</p>
+
+<p>
+  <strong>Authorname3:</strong>
+  <%= @paper.authorName3 %>
+</p>
+
+<p>
+  <strong>Authorname4:</strong>
+  <%= @paper.authorName4 %>
+</p>
+
+<p>
+  <strong>Authorname5:</strong>
+  <%= @paper.authorName5 %>
+</p>
+
+<p>
+  <strong>Authorname6:</strong>
+  <%= @paper.authorName6 %>
+</p>
+
+<p>
+  <strong>Authorname7:</strong>
+  <%= @paper.authorName7 %>
+</p>
+
+<p>
+  <strong>Authorname8:</strong>
+  <%= @paper.authorName8 %>
+</p>
+
+<p>
+  <strong>Authorname9:</strong>
+  <%= @paper.authorName9 %>
+</p>
+
+<p>
+  <strong>Authorname10:</strong>
+  <%= @paper.authorName10 %>
+</p>
+
+<p>
+  <strong>Comauthor:</strong>
+  <%= @paper.comAuthor %>
+</p>
+
+<p>
+  <strong>Comaddr:</strong>
+  <%= @paper.comAddr %>
+</p>
+
+<p>
+  <strong>Pubyear:</strong>
+  <%= @paper.pubYear %>
+</p>
+
+<p>
+  <strong>Journal:</strong>
+  <%= @paper.journal %>
+</p>
+
+<p>
+  <strong>Survey:</strong>
+  <%= @paper.survey %>
+</p>
+
+<%= link_to 'Edit', edit_paper_path(@paper) %> |
+<%= link_to 'Back', papers_path %>
+ -->
+
+
+ <div class="container" style="min-height: 880px">
+<div class="page-header text-center">
+       <h1><%= @survey.title %></h1>
+</div>
+<div class="row">
+  <div  class="col-lg-8" >
+  <p class="h4 text-center">问题</p>
+  <form action="/api/v1/records/index" method="get">
+  <p class="h4"><%= @question.id-@survey.questions.first.id+1 %>.  <%= @question.title%></p>
+  <div class="thumbnail " name="" style="background-color: #f7f7f7">
+    <% if @question.style==0%>
+      <% @question.obj_options.each do |a|%>
+        <label>
+          <input type="radio" name="content[]" id="a<%= a.id%>" value="<%= a.id%>" >
+          <%= a.title%>
+        </label><br/>
+        <% end %>
+        <% @question.sub_options.each do |o|%>
+            <label >
+            <input type="radio" aria-label="" name="content[]" id="o<%= o.id%>" value="o<%= o.id%>"> 其他
+            </label>
+            <input type="text" class="form-control" name="content[]" id="o<%= o.id%>"  placeholder="<%= o.title%>" >
+        <% end %>
+    <% elsif @question.style==1%>
+      <% @question.obj_options.each do |a|%>
+      <label>
+          <input type="checkbox" name="content[]" id="<%= a.id%>" value="<%= a.id%>" >
+          <%= a.title%>
+      </label><br/>
+      <% end %>
+        <% @question.sub_options.each do |o|%>
+             <label >
+             <input type="checkbox" aria-label="" name="content[]" id="o<%= o.id%>"  value="o<%= o.id%>"> 其他
+             </label>
+            <input type="text" class="form-control" name="content[]" id="o<%= o.id%>"  placeholder="<%= o.title%>" >
+        <% end %>
+    <% elsif @question.style==2 %>
+      <% @question.obj_options.each do |a|%>
+      <textarea  class="form-control" name="content[]" rows="3" placeholder="<%= a.title%>"></textarea>
+      <% end %>
+    <% end %>
+    </div>
+  <input type="text" class="form-control hidden" name="question_id" value="<%= @question.id%>" >
+  <input type="text" class="form-control hidden" name="paper_id" value="<%= @paper.id%>" >
+  <input type="text" class="form-control hidden" name="user_id" value="<%= current_user.id%>" >
+
+  <% if @question == @survey.questions.last %>
+  <!-- <input type="submit" value="下一题" class="btn btn-primary"/> -->
+  <input type="submit" value="完成" class="btn btn-primary"/>
+  <% else %>
+  <input type="submit" value="下一题" class="btn btn-primary"/>
+  <% end %>
+
+  </form>
+  </div>
+  <div class="col-lg-4" style="border-style: dotted;">
+    <p class="h4 text-center">文献基本信息</p>
+    <p><strong> 题目：</strong><%= @paper.title%></p> 
+    <p><strong> 第一作者：</strong><%= @paper.authorName1%></p> 
+    <p><strong> 第二作者：</strong><%= @paper.authorName2%></p> 
+    <p><strong> 第三作者：</strong><%= @paper.authorName3%></p> 
+    <p><strong> 第四作者：</strong><%= @paper.authorName4%></p>  
+    <p><strong> 第五作者：</strong><%= @paper.authorName5%></p> 
+    <p><strong> 第六作者：</strong><%= @paper.authorName6%></p> 
+    <p><strong> 第七作者：</strong><%= @paper.authorName7%></p> 
+    <p><strong> 第八作者：</strong><%= @paper.authorName8%></p> 
+    <p><strong> 第九作者：</strong><%= @paper.authorName9%></p> 
+    <p><strong> 第十作者：</strong><%= @paper.authorName10%></p> 
+    <p><strong> 通信作者：</strong><%= @paper.comAuthor%></p> 
+    <p><strong> 通信地址：</strong><%= @paper.comAddr%></p> 
+    <p><strong> 发表年份：</strong><%= @paper.pubYear%></p> 
+    <p><strong> 期刊名：</strong><%= @paper.journal%></p>  
+
+
+  </div>
+</div>
+
+</div>

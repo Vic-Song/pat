@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Obj Options</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Question</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @obj_options.each do |obj_option| %>
+      <tr>
+        <td><%= obj_option.title %></td>
+        <td><%= obj_option.question %></td>
+        <td><%= link_to 'Show', obj_option %></td>
+        <td><%= link_to 'Edit', edit_obj_option_path(obj_option) %></td>
+        <td><%= link_to 'Destroy', obj_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Obj Option', new_obj_option_path %>

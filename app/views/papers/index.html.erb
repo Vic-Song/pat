@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Papers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Authorname1</th>
+      <th>Authorname2</th>
+      <th>Authorname3</th>
+      <th>Authorname4</th>
+      <th>Authorname5</th>
+      <th>Authorname6</th>
+      <th>Authorname7</th>
+      <th>Authorname8</th>
+      <th>Authorname9</th>
+      <th>Authorname10</th>
+      <th>Comauthor</th>
+      <th>Comaddr</th>
+      <th>Pubyear</th>
+      <th>Journal</th>
+      <th>Survey</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @papers.each do |paper| %>
+      <tr>
+        <td><%= paper.title %></td>
+        <td><%= paper.authorName1 %></td>
+        <td><%= paper.authorName2 %></td>
+        <td><%= paper.authorName3 %></td>
+        <td><%= paper.authorName4 %></td>
+        <td><%= paper.authorName5 %></td>
+        <td><%= paper.authorName6 %></td>
+        <td><%= paper.authorName7 %></td>
+        <td><%= paper.authorName8 %></td>
+        <td><%= paper.authorName9 %></td>
+        <td><%= paper.authorName10 %></td>
+        <td><%= paper.comAuthor %></td>
+        <td><%= paper.comAddr %></td>
+        <td><%= paper.pubYear %></td>
+        <td><%= paper.journal %></td>
+        <td><%= paper.survey %></td>
+        <td><%= link_to 'Show', paper %></td>
+        <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
+        <td><%= link_to 'Destroy', paper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Paper', new_paper_path %>

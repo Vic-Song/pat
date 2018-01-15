@@ -1,0 +1,32 @@
+<div class="row" >
+<div class="col-lg-4 col-lg-offset-4">
+
+<div style="min-height: 764px">
+
+
+<%= form_with(model: survey, local: true) do |form| %>
+  <% if survey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+      <% survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title,"标题" %><br>
+    <%= form.text_field :title,class:"form-control" %>
+  </div>
+  <div class="actions">
+    <%= form.submit "确定",class:"btn btn-primary btn-lg" %>
+  </div>
+<% end %>
+
+
+</div>
+</div>
+</div>

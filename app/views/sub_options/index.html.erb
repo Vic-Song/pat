@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sub Options</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Question</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sub_options.each do |sub_option| %>
+      <tr>
+        <td><%= sub_option.title %></td>
+        <td><%= sub_option.question %></td>
+        <td><%= link_to 'Show', sub_option %></td>
+        <td><%= link_to 'Edit', edit_sub_option_path(sub_option) %></td>
+        <td><%= link_to 'Destroy', sub_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sub Option', new_sub_option_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @obj_option.title %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @obj_option.question %>
+</p>
+
+<%= link_to 'Edit', edit_obj_option_path(@obj_option) %> |
+<%= link_to 'Back', obj_options_path %>

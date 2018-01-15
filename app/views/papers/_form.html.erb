@@ -1,0 +1,107 @@
+<div class="row" >
+<div class="col-lg-4 col-lg-offset-4">
+
+<div style="min-height: 764px">
+
+
+<%= form_with(model: paper, local: true) do |form| %>
+  <% if paper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
+
+      <ul>
+      <% paper.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title , "标题"%>
+    <%= form.text_field :title, id: :paper_title,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authorName1,"第一作者" %>
+    <%= form.text_field :authorName1, id: :paper_authorName1,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authorName2,"第二作者" %>
+    <%= form.text_field :authorName2, id: :paper_authorName2,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authorName3,"第三作者" %>
+    <%= form.text_field :authorName3, id: :paper_authorName3,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authorName4,"第四作者" %>
+    <%= form.text_field :authorName4, id: :paper_authorName4,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authorName5,"第五作者" %>
+    <%= form.text_field :authorName5, id: :paper_authorName5,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authorName6,"第六作者" %>
+    <%= form.text_field :authorName6, id: :paper_authorName6,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authorName7,"第七作者" %>
+    <%= form.text_field :authorName7, id: :paper_authorName7,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authorName8,"第八作者" %>
+    <%= form.text_field :authorName8, id: :paper_authorName8,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authorName9,"第九作者" %>
+    <%= form.text_field :authorName9, id: :paper_authorName9,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authorName10,"第十作者" %>
+    <%= form.text_field :authorName10, id: :paper_authorName10,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comAuthor,"通信作者" %>
+    <%= form.text_field :comAuthor, id: :paper_comAuthor,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comAddr,"通信地址" %>
+    <%= form.text_area :comAddr, id: :paper_comAddr,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pubYear,"发表年份" %>
+    <%= form.text_field :pubYear, id: :paper_pubYear,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :journal,"期刊名称" %>
+    <%= form.text_field :journal, id: :paper_journal,class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :survey_id %>
+    <%= form.text_field :survey_id, id: :paper_survey_id,class:"form-control",value:"#{params[:survey_id]}",readonly:true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "确定", class:"btn btn-primary btn-lg"%>
+  </div>
+<% end %>
+
+</div>
+</div>
+</div>

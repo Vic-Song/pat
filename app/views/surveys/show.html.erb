@@ -1,0 +1,70 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @survey.title %>
+</p>
+
+<%= link_to 'Edit', edit_survey_path(@survey) %> |
+<%= link_to 'Back', surveys_path %> -->
+
+<div class="container" style="min-height: 880px">
+<div class="page-header text-center">
+       <h1><%= @survey.title %></h1>
+</div>
+<div class="row">
+	<div class="col-lg-8" >
+	<p class="h4 text-center">问题</p>
+	<% @survey.questions.each do |q|%>
+	<p class="h4"><%= q.id-q.survey.questions.first.id+1 %>.  <%= q.title%></p>
+	<div class="thumbnail " name="" style="background-color: #f7f7f7">
+		<% if q.style==0%>
+			<% q.obj_options.each do |a|%>
+			  <label>
+			    <input type="radio" name="optionsRadios" id="<%= a.id%>" value="<%= a.id%>" >
+			    <%= a.title%>
+			  </label><br/>
+			  <% end %>
+			  <% q.sub_options.each do |o|%>
+					<label >
+					<input type="radio" aria-label="" name="optionsRadios" id="o<%= o.id%>"> 其他
+					</label>
+					<input type="text" class="form-control" name="optionsRadios"  id="o<%= o.id%>"  placeholder="<%= o.title%>" >
+		            	  <% end %>
+		<% elsif q.style==1%>
+			<% q.obj_options.each do |a|%>
+			<label>
+			    <input type="checkbox" id="<%= a.id%>" value="<%= a.id%>" >
+			    <%= a.title%>
+			</label><br/>
+			<% end %>
+			<% q.sub_options.each do |o|%>
+					<label >
+					<input type="checkbox" aria-label="" name="checkbox" id="o<%= o.id%>"> 其他
+					</label>
+					<input type="text" class="form-control" name="checkbox"  id="o<%= o.id%>"  placeholder="<%= o.title%>" >
+		            	<% end %>	
+		<% elsif q.style==2%>
+			<% q.obj_options.each do |a|%>
+			<textarea class="form-control" rows="3" placeholder="<%= a.title%>" style=" "></textarea>
+			<% end %>
+		<% end %>
+		</div>
+	<% end %>
+	</div>
+	<div class="col-lg-4" style="border-style: double;">
+		<p class="h4 text-center">文献  <span class="badge"><%= @survey.papers.count%></span>  </p>
+			<% @survey.papers.each do |p|%>
+			<p class=""><%= p.id-p.survey.papers.first.id+1 %>. <%= p.title%>&nbsp;&nbsp;&nbsp;
+			<% if Result.where(paper_id:p.id).blank?%>
+			<%= link_to '分析',p,class:"btn btn-link btn-sm",style:"color:red"%>
+			<% else %>
+			<span class="glyphicon glyphicon-ok " style="color:green"></span><%= link_to '查看',results_path(paper_id:p.id),class:"btn btn-link btn-sm",style:"color:green"%>
+			<% end %>
+			</p>
+			<% end %>
+
+	</div>
+</div>
+
+</div>
