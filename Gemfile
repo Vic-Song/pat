@@ -1,4 +1,7 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
+source 'https://gems.ruby-china.org'
+
+
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -21,6 +24,10 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'bootstrap-sass'
 gem 'devise'
+
+# for data visualization
+gem 'chartkick'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

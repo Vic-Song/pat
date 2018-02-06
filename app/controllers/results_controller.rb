@@ -8,6 +8,12 @@ class ResultsController < ApplicationController
     @results = Result.all
     @paper = Paper.find(params[:paper_id])
     @survey = @paper.survey
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @results.to_csv }
+      format.xls # { send_data @products.to_csv(col_sep: "\t") }
+    end
   end
 
   # GET /results/1

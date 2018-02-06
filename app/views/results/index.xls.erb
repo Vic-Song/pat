@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="<%= current_user.email %>">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Paper Title/Research metrics</Data></Cell>
+        <% @survey.questions.each do |q| %>
+        <Cell><Data ss:Type="String"><%= q.title %></Data></Cell>
+        <% end %>
+      </Row>
+
+      <% @survey.papers.each do |p| %>
+      <Row>
+      <Cell><Data ss:Type="String"><%= p.title %></Data></Cell>
+      
+      <% Result.where('paper_id=? AND user_id=?',p.id,current_user.id).each do |r| %>
+      <Cell><Data ss:Type="String">
+        <% opids = r.content.tr('[]\" ','').split(',') %>
+        <% if r.question.style == 0 || r.question.style == 1 %>
+          <% if opids[-2].to_s.include?('o') %>
+            <% for op in opids[0..-3] %>
+                <%= ObjOption.find(op).title %>
+            <% end %>
+            其他：<%= opids[-1] %>
+          <% else %>
+            <% for op in opids %>
+              <%= ObjOption.find(op).title %> 
+            <% end %>
+          <% end %>
+        <% elsif r.question.style == 2 %>
+          <% for op in opids %>
+            <%= op %>
+          <% end %>
+        <% end %>
+      </Data></Cell> 
+      <% end %>
+      
+      </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+

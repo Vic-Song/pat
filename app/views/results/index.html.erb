@@ -34,14 +34,17 @@
  -->
 
 <div class="container" style="min-height: 859px">
-  <div class="page-header"><p class="h1 text-center"> 数据统计结果 </p></div>  
-  <p class="h4 text-right">用户信息：<%= current_user.email%></p>
+  <div class="page-header">
+    <p class="h1 text-center"> 数据统计结果  </p>
+  </div>  
+  <!-- <p class="h4 text-right">用户信息：<%= current_user.email%> </p> -->
   <table class="table table-striped">
     <thead>
       <tr>
       <th>评价指标</th>
       <th>本文章数据</th>
-      <th>本项目所有文章综合</th>
+      <th>本项目所有文章综合 | <%= link_to "下载Excel表格", results_path(paper_id:@paper.id, format: "xls"),style:"color:green" %> </th>
+      <th>功能选择</th>
       </tr>
     </thead>
     <tbody>
@@ -75,6 +78,7 @@
         <%= rs %>-->
 
         <td>
+        <% @data = Hash.new %>
           <% q.obj_options.each do |ob|%>
             <% i = 0 %>
             <% q.results.each do |r| %>
@@ -83,6 +87,7 @@
               <% end %>
             <% end %>
             <p> <%= ob.title %> : <%= i %> </p>
+            <% @data.merge!({ob.title => i}) %>
           <% end %>
           <% j = 0 %>
           <% q.results.each do |r| %>
@@ -91,6 +96,31 @@
             <% end %>
           <% end %>
           其他：<%= j %>
+          <% @data.merge!({'其他' => j}) %>
+          <!--<%= column_chart @data %>-->
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#graphics<%= q.id%>"> 可视化展示</button>
+          
+          <div class="modal fade" id="graphics<%= q.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="gridSystemModalLabel">可视化展示</h4>
+              </div>
+              <div class="modal-body">
+                <p class="text-center">折线图</p>
+                <p><%= line_chart @data, download:"linechart" %></p><br/>
+                <p class="text-center">饼状图</p>
+                <p><%= pie_chart @data, download:"piechart" %></p><br/>
+                <p class="text-center">柱状图</p>
+                <p><%= column_chart @data, download:"columnchart" %></p><br/>
+              </div>
+
+            </div>
+            </div>
+          </div>
         </td>
       </tr>
       <% end %>
