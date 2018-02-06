@@ -147,7 +147,7 @@
 					<div class="row" >
 					<div class="col-lg-8"><%= User.find(uidss[i]).email%>&nbsp;&nbsp;</div>
 					<div class="col-lg-4">
-						<!--<%= link_to "下载表格", results_path(survey_id:c.id,user_id:uidss[i],format: "xls"),class:"btn btn-link" %>-->
+						<%= link_to "下载表格", results_path(survey_id:c.id,user_id:uidss[i],format: "xls"),class:"btn btn-link" %>
 						<%= link_to "查看结果", results_path(survey_id:c.id,user_id:uidss[i]), class:"btn btn-link"%>
 					</div>
 
