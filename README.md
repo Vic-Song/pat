@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Centos部署方案：参考[这里](https://github.com/Vic-Song/bjss#linuxcentos-68-%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88)
